@@ -52,6 +52,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "717330319802-78cm6jo3nonsjellgkdncdrsurln2ait.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kotlinuberriderremake",
+            "certificate_hash": "a035c75253510b217db038654b3b5971ebb0d09d"
+          }
+        },
+        {
           "client_id": "717330319802-v8vpsei3adrda46v4rqvunnrcehtubdo.apps.googleusercontent.com",
           "client_type": 3
         }
