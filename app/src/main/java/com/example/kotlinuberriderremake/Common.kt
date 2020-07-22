@@ -8,5 +8,15 @@ import com.example.kotlinuberriderremake.model.RiderInfoModel
 object Common {
     val RIDER_INFO_REFERENCE: String = "RiderInfo"
 
-    var currentUser: RiderInfoModel? = null
+    var currentRider: RiderInfoModel? = null
+
+    fun buildWelcomeMessage(): String {
+        return if (currentRider != null)
+            StringBuilder("Welcome ")
+                .append(currentRider?.firstName)
+                .append(" ")
+                .append(currentRider?.lastName).toString()
+        else
+            ""
+    }
 }

@@ -215,7 +215,7 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun goToHomeActivity(model: RiderInfoModel?) {
-        Common.currentUser = model
+        Common.currentRider = model
         startActivity(Intent(this, HomeActivity::class.java))
         finish()
     }
