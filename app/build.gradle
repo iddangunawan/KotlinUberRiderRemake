@@ -58,6 +58,8 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:6.2.1'
     // Firebase Database
     implementation 'com.google.firebase:firebase-database:19.3.1'
+    // Firebase Storage
+    implementation 'com.google.firebase:firebase-storage:19.1.1'
 
     // RxJava
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
@@ -74,4 +76,8 @@ dependencies {
 
     // Circle Image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 }
