@@ -14,12 +14,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.kotlinuberriderremake.model.RiderInfoModel
+import com.example.kotlinuberriderremake.utils.UserUtils
 import com.firebase.ui.auth.AuthMethodPickerLayout
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.iid.FirebaseInstanceId
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.activity_splash_screen.*
@@ -89,6 +91,16 @@ class SplashScreenActivity : AppCompatActivity() {
         listener = FirebaseAuth.AuthStateListener { myFireBaseAuth ->
             val user = myFireBaseAuth.currentUser
             if (user != null) {
+                // Update token
+                FirebaseInstanceId.getInstance()
+                    .instanceId
+                    .addOnFailureListener { error ->
+                        Toast.makeText(this, error.message, Toast.LENGTH_LONG).show()
+                    }
+                    .addOnSuccessListener { instanceIdResult ->
+                        UserUtils.updateToken(this, instanceIdResult.token)
+                        Log.d("TOKEN", instanceIdResult.token)
+                    }
                 checkUserFromFirebase()
             } else {
                 showLoginLayout()
