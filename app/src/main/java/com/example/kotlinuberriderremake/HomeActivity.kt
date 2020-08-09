@@ -195,9 +195,9 @@ class HomeActivity : AppCompatActivity() {
         val dialog: AlertDialog = builder.create()
         dialog.setOnShowListener { dialogInterface ->
             dialog.getButton(AlertDialog.BUTTON_POSITIVE)
-                .setTextColor(resources.getColor(android.R.color.holo_red_dark))
+                .setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
             dialog.getButton(AlertDialog.BUTTON_NEGATIVE)
-                .setTextColor(resources.getColor(R.color.colorAccent))
+                .setTextColor(ContextCompat.getColor(this, R.color.colorAccent))
         }
         dialog.show()
     }

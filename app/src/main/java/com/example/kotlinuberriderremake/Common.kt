@@ -10,16 +10,22 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Build
 import androidx.core.app.NotificationCompat
+import com.example.kotlinuberriderremake.model.DriverGeoModel
 import com.example.kotlinuberriderremake.model.RiderInfoModel
+import com.google.android.gms.maps.model.Marker
 
 /**
  * Created by iddangunawan on 17/07/20
  */
 object Common {
-    val RIDER_INFO_REFERENCE: String = "RiderInfo"
     val TOKEN_REFERENCE: String = "Token"
+    val RIDER_INFO_REFERENCE: String = "RiderInfo"
+    val DRIVER_INFO_REFERENCE: String = "DriverInfo"
+    val DRIVERS_LOCATION_REFERENCES: String = "DriversLocation" // same as Server app
 
     var currentRider: RiderInfoModel? = null
+    val markerList: MutableMap<String, Marker>? = HashMap()
+    val driversFound: MutableSet<DriverGeoModel>? = HashSet()
 
     fun buildWelcomeMessage(): String {
         return if (currentRider != null)
@@ -31,23 +37,19 @@ object Common {
             ""
     }
 
-    fun showNotification(
-        context: Context,
-        id: Int,
-        title: String?,
-        body: String?,
-        intent: Intent?
-    ) {
+    fun buildName(firstName: String?, lastName: String?): String? {
+        return StringBuilder(firstName!!).append(" ").append(lastName).toString()
+    }
+
+    fun showNotification(context: Context, id: Int, title: String?, body: String?, intent: Intent?) {
         var pendingIntent: PendingIntent? = null
 
         if (intent != null) {
-            pendingIntent =
-                PendingIntent.getActivity(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
+            pendingIntent = PendingIntent.getActivity(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT)
         }
 
         val NOTIFICATION_CHANNEL_ID = "mylektop_uber_remake"
-        val notificationManager =
-            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val notificationChannel = NotificationChannel(
